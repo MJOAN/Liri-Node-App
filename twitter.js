@@ -1,19 +1,23 @@
-console.log('this is loaded');
 
-var twitterKeys = {
+const Twitter = require('twitter');
+
+var twitterKey = {
   consumer_key: 'ALburluBDwac42PXtE0oqwfC',
   consumer_secret: 'gTwvY4XfTRpwr5gf4M2aND4aJ4W5s5hAWLnHJwJC6sNo0S0YYJ',
   access_token_key: '919642726987001856-ZJPpygAuEQ0XmG7K2KG3lvfUmagbBIP',
   access_token_secret: 'cJDrDE8QtWS9DHAJxSK9FT86d7JgYzvXuhrvk4OSO1I9G',
 }
 
+var params = {screen_name: 'nodejs'};
 
-var spotifyKeys = {
-	Spotify Client ID: '45663fbd48ef4e93ac6455142ea4ec38',
-	Client secret: '229d8fb6643f4bd3bbe481282406ec5d'
-}
+client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  if (!error) {
+    console.log(tweets);
 
 
-module.exports = twitterKeys;
-module.exports = spotifyKeys;
+
+
+
+  }
+});
 
