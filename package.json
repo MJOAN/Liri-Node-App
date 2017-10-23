@@ -2,15 +2,22 @@
   "name": "liri-node-app",
   "version": "1.0.0",
   "description": "Homework #10 UCLA",
-  "main": "keys.js",
-  "dependencies": {
-    "node-spotify-api": "^1.0.7",
-    "request": "^2.83.0",
-    "twitter": "^1.7.1"
+  "main": "liri.js",
+  "bin": {
+    "liri": "./liri.js"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "do": "./liri.js do-what-it-says",
+    "movie": "./liri.js movie-this",
+    "spotify": "./liri.js spotify-this-song",
+    "tweets": "./liri.js my-tweets"
+  },
+  "dependencies": {
+    "request": "^2.83.0",
+    "spotify-web-api-node": "^2.5.0",
+    "twitter": "^1.7.1",
+    "util": "^0.10.3"
   },
   "repository": {
     "type": "git",
