@@ -1,24 +1,23 @@
 
 var keys = require('./keys.js');
-const Twitter = require('twitter'); 
-var client = new Twitter(keys.twitterKeys);   
-// var spotify = new Spotify(keys.credentials);  
-
-const Spotify = require('node-spotify-api');
-const request = require('request');   //OMDB api key: 40e9cece
-
-//  try catch keys error
-try {
-  var keys = require('./keys.js');
-} catch(err) {
-  twitterKeys = false;
-  credentials = false;
-}
 
 const fs = require('fs');
 
+const Twitter = require('twitter'); 
+var client = new Twitter(keys.twitterKeys);   
+
+const Spotify = require('node-spotify-api');
+const request = require('request');   //OMDB api: 40e9cece
+
 var action = process.argv[2];
 var value = process.argv[3];
+
+try {
+  var keys = require('./keys.js');
+} catch(error) {liri
+  twitterKeys = false;
+  credentials = false;
+}
 
 switch (action) {
   case 'my-tweets':
@@ -31,6 +30,10 @@ switch (action) {
 
   case 'movie-this':
     myMovie();
+    break;
+
+  case 'do-what-it-says':
+    myDo();
     break;
 }
 
@@ -46,7 +49,6 @@ const client = new Twitter({
 
 var params = {
     screen_name: '_mjoan',
-    result_type: 'recent',
     count: 20
   }; 
 
@@ -57,7 +59,8 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
     	return;
 
     } else {
-    	console.log(tweets[0].screen_name);
+    	console.log(tweets[0]);
+      console.log(tweets[0].screen_name);
     	console.log(tweets[0].text);
       console.log(tweets[0].created_at);
     }
@@ -97,19 +100,8 @@ spotify
 
 
 
-
-
 function myMovie() {
 var movie = process.argv[3];
-
-/*for (var i = 2; i < value.length; i++) {
-  if (i > 2 && i < value.length) {
-    movie = movie + "+" + value[i];
-  }
-  else {
-    movie += value[i];
-  }
-}*/
 
 var omdbURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=40e9cece";
 console.log(omdbURL);
@@ -132,3 +124,44 @@ request(omdbURL, function(error, response, data) {
     }
   });
 };
+
+
+function myDo() {
+
+fs.readFile("random.txt", "utf8", function(error, data) {
+  if (error) {
+    return console.log(error);
+  }
+    var output = data.split(",");
+    for (var i = 0; i < output.length; i++) {
+        console.log(output[i]);
+    }
+  });
+};
+
+function myLog() {
+
+var logFile = fs.createWriteStream('log.txt', { flags: 'a' });
+var logStdout = process.stdout;
+
+console.log = function () {
+  logFile.write(util.format.apply(null, arguments) + '\n');
+  logStdout.write(util.format.apply(null, arguments) + '\n');
+}
+  console.error = console.log;
+  myLog();
+};
+
+
+     
+/*// OR USE THIS:  https://nodejs.org/api/console.html
+const output = fs.createWriteStream('./stdout.log');
+// custom simple logger
+const logger = new Console(output);
+// use it like console
+const count = 100;
+logger.log('count: %d', count);
+*/
+
+
+
