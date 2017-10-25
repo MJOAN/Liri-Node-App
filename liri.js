@@ -1,10 +1,15 @@
 
-var keys = require('./keys.js');
+var tokens = require('./keys.js');
 
 const fs = require('fs');
 
+const util = require('util');
+const keys = Object.keys;
+const Console = new Console(process.stdout, process.stderr);
+
+
 const Twitter = require('twitter'); 
-var client = new Twitter(keys.twitterKeys);   
+var client = new Twitter(tokens.twitterKeys);   
 
 const Spotify = require('node-spotify-api');
 const request = require('request');   //OMDB api: 40e9cece
@@ -13,7 +18,7 @@ var action = process.argv[2];
 var value = process.argv[3];
 
 try {
-  var keys = require('./keys.js');
+  var tokens = require('./keys.js');
 } catch(error) {liri
   twitterKeys = false;
   credentials = false;
