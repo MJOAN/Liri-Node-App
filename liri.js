@@ -1,15 +1,11 @@
 
-var tokens = require('./keys.js');
+var keys = require('./keys.js');
 
 const fs = require('fs');
-
 const util = require('util');
-const keys = Object.keys;
-const Console = new Console(process.stdout, process.stderr);
-
 
 const Twitter = require('twitter'); 
-var client = new Twitter(tokens.twitterKeys);   
+var client = new Twitter(keys.twitterKeys);   
 
 const Spotify = require('node-spotify-api');
 const request = require('request');   //OMDB api: 40e9cece
@@ -18,7 +14,7 @@ var action = process.argv[2];
 var value = process.argv[3];
 
 try {
-  var tokens = require('./keys.js');
+  var keys = require('./keys.js');
 } catch(error) {liri
   twitterKeys = false;
   credentials = false;
@@ -101,7 +97,7 @@ spotify
   .catch(function(err) {
     console.error('Error occurred: ' + err); 
   });  
-}
+};
 
 
 
@@ -144,7 +140,9 @@ fs.readFile("random.txt", "utf8", function(error, data) {
   });
 };
 
-function myLog() {
+
+/* BONUS OPTION ATTEMPTS: log text file input/errors
+NODEJS docs: https://nodejs.org/api/console.html
 
 var logFile = fs.createWriteStream('log.txt', { flags: 'a' });
 var logStdout = process.stdout;
@@ -154,19 +152,21 @@ console.log = function () {
   logStdout.write(util.format.apply(null, arguments) + '\n');
 }
   console.error = console.log;
-  myLog();
 };
 
 
-     
-/*// OR USE THIS:  https://nodejs.org/api/console.html
+// OR: 
 const output = fs.createWriteStream('./stdout.log');
-// custom simple logger
-const logger = new Console(output);
-// use it like console
-const count = 100;
+const errorOutput = fs.createWriteStream('./stderr.log');
+const logger = new Console(output, errorOutput);
+
+const count = 5;
 logger.log('count: %d', count);
+
+
 */
+     
+
 
 
 
