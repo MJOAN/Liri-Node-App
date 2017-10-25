@@ -1,9 +1,10 @@
 
 var keys = require('./keys.js');
 const Twitter = require('twitter'); 
-var client = new Twitter(keys.twitterKeys);   //took me firday night 5 hrs; sat day; 6 hrs to get this;
+var client = new Twitter(keys.twitterKeys);   
+// var spotify = new Spotify(keys.credentials);  
 
-const SpotifyWebApi = require('spotify-web-api-node');
+const Spotify = require('node-spotify-api');
 const request = require('request');   //OMDB api key: 40e9cece
 
 //  try catch keys error
@@ -11,7 +12,7 @@ try {
   var keys = require('./keys.js');
 } catch(err) {
   twitterKeys = false;
-  spotifyKey = false;
+  credentials = false;
 }
 
 const fs = require('fs');
@@ -66,47 +67,36 @@ client.get('statuses/user_timeline', params, function(error, tweets, response) {
 
 function mySpotify() {
 
-var spotifyApi = new SpotifyWebApi({
-  accessToken : 'njd9wng4d0ycwnn3g4d1jm30yig4d27iom5lg4d3'
+var spotify = new Spotify ({
+  id: '45663fbd48ef4e93ac6455142ea4ec38',
+  secret: '229d8fb6643f4bd3bbe481282406ec5d'
 });
 
-var song = value;
+var song = process.argv[3];
+
 var params = {
     type: 'track',
     query: song
   }; 
 
-// Retrieve an access token.
-spotifyApi.clientCredentialsGrant()
+spotify
+  .request('https://api.spotify.com/v1/search?q=name:' + song + '&type=track&limit=10')
+
   .then(function(data) {
-    console.log('The access token expires in ' + data.body['expires_in']);
-    console.log('The access token is ' + data.body['access_token']);
+      console.log('Song Details: ', data.tracks);
 
-    // Save the access token so that it's used in future calls
-    spotifyApi.setAccessToken(data.body['access_token']);
-  }, function(err) {
-        console.log('Something went wrong when retrieving an access token', err);
-  });
+      console.log('Artist: ' + data.tracks.items[0].artists[0].name);
+      console.log('Song: ' + data.tracks.items[0].name);
+      console.log('Preview Link: ' + data.tracks.items[0].preview_url);
+      console.log('Album: ' + data.tracks.items[0].album.name);
+  })
+  .catch(function(err) {
+    console.error('Error occurred: ' + err); 
+  });  
+}
 
-"https://api.spotify.com/v1/search?q=' +song + '&type=artist" -H 
-"Authorization: Bearer {your access token}"
 
-spotifyApi.searchTracks(song)
-.then(function(data) {
-    (data.statusCode).should.equal(200);     
-      console.log('Song Details: ', data.body);
-      var data = JSON.parse(data.body);
 
-      console.log('Artist: ' + data.artists[0].name);
-      console.log('Song Name: ' + data.name);
-      console.log('Preview Song Link: ' + data.preview_url);
-      console.log('Album Name: ' + data.album.name);
-    }, function(err) {
-       
-      });
-  };  
-
-     
 
 
 function myMovie() {
@@ -142,5 +132,3 @@ request(omdbURL, function(error, response, data) {
     }
   });
 };
-
-

@@ -14,10 +14,9 @@
     "tweets": "./liri.js my-tweets"
   },
   "dependencies": {
+    "node-spotify-api": "^1.0.7",
     "request": "^2.83.0",
-    "spotify-web-api-node": "^2.5.0",
-    "twitter": "^1.7.1",
-    "util": "^0.10.3"
+    "twitter": "^1.7.1"
   },
   "repository": {
     "type": "git",
