@@ -1,11 +1,9 @@
-
-var keys = require('./keys.js');
+const keys = require('./keys.js');
 
 const fs = require('fs');
 const util = require('util');
 
 const Twitter = require('twitter'); 
-var client = new Twitter(keys.twitterKeys);   
 
 const Spotify = require('node-spotify-api');
 const request = require('request');   //OMDB api: 40e9cece
@@ -13,12 +11,12 @@ const request = require('request');   //OMDB api: 40e9cece
 var action = process.argv[2];
 var value = process.argv[3];
 
-try {
+/*try {
   var keys = require('./keys.js');
 } catch(error) {liri
   twitterKeys = false;
   credentials = false;
-}
+}*/
 
 switch (action) {
   case 'my-tweets':
@@ -42,28 +40,27 @@ switch (action) {
 function myTwitter() {
 
 const client = new Twitter({
-  consumer_key: 'qALburluBDwac42PXtE0oqwfC',
-  consumer_secret: 'gTwvY4XfTRpwr5gf4M2aND4aJ4W5s5hAWLnHJwJC6sNo0S0YYJ',
-  access_token_key: '919642726987001856-ZJPpygAuEQ0XmG7K2KG3lvfUmagbBIP',
-  access_token_secret: 'cJDrDE8QtWS9DHAJxSK9FT86d7JgYzvXuhrvk4OSO1I9G',
+    consumer_key: 'qALburluBDwac42PXtE0oqwfC',
+    consumer_secret: 'gTwvY4XfTRpwr5gf4M2aND4aJ4W5s5hAWLnHJwJC6sNo0S0YYJ',
+    access_token_key: '919642726987001856-ZJPpygAuEQ0XmG7K2KG3lvfUmagbBIP',
+    access_token_secret: 'cJDrDE8QtWS9DHAJxSK9FT86d7JgYzvXuhrvk4OSO1I9G',
 });
 
 var params = {
     screen_name: '_mjoan',
-    count: 20
+    count: 10
   }; 
 
 client.get('statuses/user_timeline', params, function(error, tweets, response) {
-	
-  if (error) {
-    	console.error('Twitter response/request error: ', error.message);
-    	return;
-
-    } else {
-    	console.log(tweets[0]);
-      console.log(tweets[0].screen_name);
-    	console.log(tweets[0].text);
-      console.log(tweets[0].created_at);
+  if (error) { console.error('Twitter response/request error: ', error.message);
+    return;
+  } else {
+      for (var i = 0; i < tweets.length; i++) {
+        console.log(tweets[i].created_at);
+        console.log(tweets[i].user);
+        console.log(tweets[i].text);
+        console.log(tweets[i].entities);
+      }    	      
     }
   });
 };
