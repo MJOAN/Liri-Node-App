@@ -1,9 +1,9 @@
-# Liri-Node-App, i.e. The 'LIRI Bot
+## Liri-Node-App, i.e. The 'LIRI Bot
+## Overview
 
-### Overview
-In this assignment, I created what is called a 'LIRI'. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line Node app that takes in parameters and gives you back data all in the command line! Yay! 
+Here I created what is called a 'LIRI'. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line Node app that takes in parameters and gives you back data all in the command line! Yay! 
 
-### Instructions
+### Process
 3. To retrieve the data that will power this app, you'll need to send requests to the Twitter, Spotify and OMDB APIs. You'll find these Node packages crucial for your assignment.
 
    * [Twitter](https://www.npmjs.com/package/twitter)
@@ -72,14 +72,9 @@ In this assignment, I created what is called a 'LIRI'. LIRI is like iPhone's SIR
      * It should run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`.
      * Feel free to change the text in that document to test out the feature for other commands.
 
-### BONUS
-* In addition to logging the data to your terminal/bash window, output the data to a .txt file called `log.txt`.
-* Make sure you append each command you run to the `log.txt` file. 
-* Do not overwrite your file each time you run a command.
 
-- - -
 
-**Good Luck!**
 
-## Copyright
-Coding Boot Camp (C) 2016. All Rights Reserved.
+
+##### Copyright
+##### Coding Boot Camp (C) 2016. All Rights Reserved.
