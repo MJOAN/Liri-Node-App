@@ -1,7 +1,7 @@
 ## Liri-Node-App, i.e. The 'LIRI Bot
 ## Overview
 
-Here I created what is called a 'LIRI'. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line Node app that takes in parameters and gives you back data all in the command line! Yay! 
+Here I created what is called a 'LIRI'. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line Node app that takes in parameters and gives you back data all in the command line! Thanks to the Coding Boot Camp for template code. Yay! 
 
 ### Process
 3. To retrieve the data that will power this app, you'll need to send requests to the Twitter, Spotify and OMDB APIs. You'll find these Node packages crucial for your assignment.
